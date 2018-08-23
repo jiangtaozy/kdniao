@@ -10,5 +10,9 @@ export default {
   asyncSubscribe: {
     type: '101',    
     url: 'http://api.kdniao.cc/api/dist'        
+  },
+  ebill: {
+    type: '1007',
+    url: 'http://api.kdniao.cc/api/EOrderService'
   }
 };

@@ -66,10 +66,10 @@ export default class KDNiaoService {
   }
 
   //4.2	物流轨迹（订阅查询）
-  //order: {shipper: 'xxx', code: 'xx'}
+  //order: {shipper: 'xxx', code: 'xx', orderId: 'xxx'}
   makeOrderTrace(order, options = {}) {
     this.mixinOptions(config.trace, options);
-    let requestData = {ShipperCode: order.shipper, LogisticCode: order.code};
+    let requestData = {ShipperCode: order.shipper, LogisticCode: order.code, OrderCode: order.orderId};
 
     return this.makeRequest(requestData);
   }
@@ -84,5 +84,12 @@ export default class KDNiaoService {
     requestData.count = requestData.data.length;
     requestData.EBusinessID = this.options.EBusinessID;
     return this.makeRequest(requestData);
+  }
+
+  // 3.2 电子面单
+  makeEbill(order, options = {}) {
+    this.mixinOptions(config.ebill, options);
+    let requestData = order;
+    return this.makeRequest(requestData)
   }
 }
